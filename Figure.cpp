@@ -8,7 +8,7 @@ Ellipse::Ellipse(double a, double b)
 	second = b;
 }
 
-double Ellipse::getArea(double first, double second)
+double Ellipse::getArea() const
 {
 	return M_PI * first * second;;
 }
@@ -20,7 +20,7 @@ Circle::Circle(double rad)
 	radius = rad;
 }
 
-double Circle::getArea(double rad)
+double Circle::getArea() const
 {
-	return 2*M_PI*rad;
+	return 2*M_PI*radius;
 }

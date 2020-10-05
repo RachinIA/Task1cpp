@@ -8,14 +8,15 @@ using namespace std;
 class Curve 
 {
 public:
-	virtual double getArea() const = 0;  //Get area of figure
+	virtual double getArea() const = 0; 
+	virtual ~Curve() = default;
 };
 
 class Ellipse : public Curve
 {
 public:
 	Ellipse(double a, double b);
-	double getArea(double first, double second);
+	double getArea() const override;
 	~Ellipse() = default;
 private:
 	double first, second;
@@ -23,8 +24,9 @@ private:
 
 class Circle : public Curve
 {
+public:
 	Circle(double rad);
-	double getArea(double rad);
+	double getArea() const override;
 	~Circle() = default;
 private:
 	double radius;
