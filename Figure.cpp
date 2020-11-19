@@ -13,6 +13,11 @@ double Ellipse::getArea() const
 	return M_PI * first * second;;
 }
 
+void Ellipse::accept(Visitor& visitor)
+{
+	visitor.visit(*this);
+}
+
 Circle::Circle(double rad)
 {
 	if (rad <= 0)
@@ -23,4 +28,9 @@ Circle::Circle(double rad)
 double Circle::getArea() const
 {
 	return 2*M_PI*radius;
+}
+
+void Circle::accept(Visitor& visitor)
+{
+	visitor.visit(*this);
 }

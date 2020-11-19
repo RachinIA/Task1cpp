@@ -21,6 +21,8 @@ double random(double max)   //Random double
 
 int main()
 {
+	bool VISITOR = true;
+	//bool VISITOR = false;
 	double sumOfAreas = 0;  //Total area
 	vector <unique_ptr<Curve>> curves;  //Vector
 
@@ -41,7 +43,14 @@ int main()
 	int k = 1;
 	for (vector <unique_ptr<Curve>>::iterator i = curves.begin(); i != curves.end(); ++i) //Output of areas
 	{
-		cout << k << ")" << (*i)->getArea() << "\t";
+		if (VISITOR)
+		{
+			GetArea visitor;
+			(*i)->accept(visitor);
+			cout << k << ")" << visitor.value << "\t";
+		} else {
+			cout << k << ")" << (*i)->getArea() << "\t";
+		}
 		if (k % 5 == 0)
 			cout << endl;
 		k++;
@@ -49,7 +58,13 @@ int main()
 
 	for (vector <unique_ptr<Curve>>::iterator i = curves.begin(); i != curves.end(); ++i)  //Get total area
 	{
-		sumOfAreas += (*i)->getArea();
+		if (VISITOR) {
+			GetArea visitor;
+			(*i)->accept(visitor);
+			sumOfAreas += visitor.value;
+		} else {
+			sumOfAreas += (*i)->getArea();
+		}
 	}
 
 	printf("\nTotal area of all circles - %.2f\n",sumOfAreas);
